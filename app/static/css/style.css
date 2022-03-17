@@ -4,6 +4,7 @@
   box-sizing: border-box;
 }
 
+/* base */
 body {
   background: #f1f1f1;
   display: flex;
@@ -13,6 +14,13 @@ body {
 
 main {
   flex: 1;
+}
+
+/* store */
+
+.storelist img {
+  height: 150px;
+  object-fit: contain;
 }
 
 .card-profile {
@@ -91,3 +99,18 @@ main {
 .form-label-group input {
   border-radius: 2rem;
 }
+
+/* staff */
+
+.stafflist img {
+  height: 250px;
+  object-fit: contain;
+}
+
+/* calendar */
+
+.calendar img {
+  height: 150px;
+  object-fit: contain;
+}
+

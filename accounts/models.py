@@ -5,6 +5,7 @@ from django.utils import timezone
 
 
 class UserManager(UserManager):
+    #_create_user関数を使うことによって、メールアドレスでの認証
     def _create_user(self, email, password, **extra_fields):
         email = self.normalize_email(email)
         user = self.model(email=email, **extra_fields)
@@ -30,11 +31,12 @@ class UserManager(UserManager):
 
 
 class CustomUser(AbstractBaseUser, PermissionsMixin):
+    #管理画面のユーザーの部分に下記情報を入れるように設定
     email = models.EmailField('メールアドレス', unique=True)
     first_name = models.CharField(('姓'), max_length=30)
     last_name = models.CharField(('名'), max_length=30)
-    department = models.CharField(('所属'), max_length=30, blank=True)
-    created = models.DateTimeField(('入会日'), default=timezone.now)
+    description = models.TextField('自己紹介', default="", blank=True)
+    image = models.ImageField(upload_to='images', verbose_name='プロフィール画像', null=True, blank=True)
 
     is_staff = models.BooleanField(
         ('staff status'),
@@ -52,6 +54,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
 
     objects = UserManager()
 
+    #username_fieldにemailフィールドを利用するように、オーバーライド
     USERNAME_FIELD = 'email'
     EMAIL_FIELD = 'email'
     REQUIRED_FIELDS = []

@@ -9,17 +9,22 @@
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
     />
+    <link rel ="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="{% static 'css/style.css' %}" />
-    <title>カスタム認証チュートリアル</title>
+    <title>予約サイト</title>
   </head>
 
   <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container">
+        <a class="navbar-brand" href="/">予約サイト</a>
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
             <a class="nav-link" href="/">ホーム</a>
           </li>
+          <!-- user.is_authenticatesを使うことで、ログイン状態なのかどうかがわかる。 -->
+          <!-- ログイン状態であれば、プロフィールとログアウトの表示。 -->
+          <!-- ログイン状態でなければ、スタッフとログインの表示 -->
           {% if user.is_authenticated %}
           <li class="nav-item">
             <a class="nav-link" href="{% url 'profile' %}">プロフィール</a>
@@ -29,7 +34,7 @@
           </li>
           {% else %}
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'account_signup' %}">サインアップ</a>
+            <a class="nav-link" href="{% url 'account_signup' %}">スタッフ</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{% url 'account_login' %}">ログイン</a>
@@ -45,10 +50,11 @@
 
     <footer class="py-2 bg-dark">
       <p class="m-0 text-center text-white">
-        Copyright &copy; Django Startup 2020
+        Copyright &copy; Shoya-Osada
       </p>
     </footer>
 
-    {% block extra_js %} {% endblock %}
+    {% block extra_js %} 
+    {% endblock %}
   </body>
 </html>
